@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt', 
     'corsheaders', 
     'apps.accounts',
-    'apps.reports',
+    'apps.reports.apps.ReportsConfig',
     'apps.finances'
 ]
 
