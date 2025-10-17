@@ -73,10 +73,10 @@ class DashboardSummaryView(generics.GenericAPIView):
 
     def get(self, request):
         user = request.user
-        period = 'monthly'  # later you can make this dynamic via user settings
+        period = 'monthly'  
 
         total_spent = get_period_spendings(user, period)
-        # Placeholder income until Income model exists
+       
         current_balance = get_current_balance(user, income_amount=0, period=period)
 
         goals = SavingsGoal.objects.filter(user=user)

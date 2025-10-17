@@ -9,14 +9,19 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ExpenseSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True)
-
+    category_details = CategorySerializer(source='category', read_only=True)  # Para tener info completa
+    
     class Meta:
         model = Expense
         fields = [
-            'id', 'user', 'date', 'category', 'category_name',
+            'id', 'date', 'category', 'category_name', 'category_details',
             'amount', 'description', 'created_at'
         ]
-        read_only_fields = ['user', 'created_at']
+        read_only_fields = ['created_at']
+    
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)
 
 class SavingsGoalSerializer(serializers.ModelSerializer):
     progress_percentage = serializers.SerializerMethodField()
