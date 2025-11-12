@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: spendtracker_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: spend_tracker
+      MYSQL_USER: st_user
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - spendtracker-network
+
+  web:
+    build: .
+    container_name: spendtracker_backend
+    restart: always
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=spend_tracker
+      - DB_USER=st_user
+      - DB_PASSWORD=1234
+      - DB_PORT=3306
+    depends_on:
+      db:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+    networks:
+      - spendtracker-network
+
+networks:
+  spendtracker-network:
+    driver: bridge
+    external: false
+
+volumes:
+  mysql_data:
+
