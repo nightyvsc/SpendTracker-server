@@ -1,18 +1,12 @@
 from pathlib import Path
 from datetime import timedelta
+import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-+w1et6$w09af9$-j^-($@4h-^c&j8)g$35a+210n8_2=ren!-1')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+w1et6$w09af9$-j^-($@4h-^c&j8)g$35a+210n8_2=ren!-1'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -66,17 +60,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'spend_tracker',
-        'USER' : 'st_user',
-        "PASSWORD" : '1234',
-        'HOST' : 'localhost',
-        'PORT' : '3306',
+        'NAME': os.environ.get('DB_NAME', 'spend_tracker'),
+        'USER': os.environ.get('DB_USER', 'st_user'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', '1234'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
     }
 }
 
