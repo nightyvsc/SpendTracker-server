@@ -28,16 +28,9 @@
 
 ## 🏗️ Arquitectura
 
-```
-SpendTracker-server/
-├─ apps/
-│  ├─ accounts/   # Auth + perfil
-│  ├─ finances/   # Categorías, Gastos, Metas, Dashboard
-│  └─ reports/    # Resumen, Categorías, Tendencias (analytics)
-├─ config/        # settings/urls/wsgi
-├─ manage.py
-└─ requirements.txt
-```
+
+<img width="780" height="157" alt="Screenshot 2025-11-13 at 3 38 44 PM" src="https://github.com/user-attachments/assets/aaaed8c1-1655-4cf5-8f31-b48e913a4d99" />
+
 
 ### Módulos principales:
 
