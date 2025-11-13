@@ -39,6 +39,9 @@ SpendTracker-server/
 └─ requirements.txt
 ```
 
+<img width="775" height="149" alt="Screenshot 2025-11-13 at 3 53 36 PM" src="https://github.com/user-attachments/assets/b5c49c51-c821-4603-b983-41b9e9fd7fca" />
+
+
 ### Módulos principales:
 
 - **accounts**: Login JWT, registro, perfil, cambio de contraseña
